@@ -63,11 +63,6 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
           <Button className="">Serviços</Button>
           <Button className="bg-secondary">Informações</Button>
         </div>
-        <div className="pt-3">
-          <Card>
-            <CardContent>{/* <Image src={} /> */}</CardContent>
-          </Card>
-        </div>
       </section>
     </>
   );
