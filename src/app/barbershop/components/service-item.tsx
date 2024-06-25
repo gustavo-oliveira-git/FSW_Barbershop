@@ -1,13 +1,23 @@
+'use client'
+
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Service } from "@prisma/client";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 interface ServiceItemProps {
   service: Service;
+  isAuthenticated?: boolean;
 }
 
-const ServiceItem = ({ service }: ServiceItemProps) => {
+const ServiceItem = ({ service, isAuthenticated }: ServiceItemProps) => {
+  const handleBookingClick = () => {
+    if (!isAuthenticated) {
+      return signIn('google');
+    }
+  };
+
   return (
     <div className="pb-3">
       <Card>
@@ -24,21 +34,23 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
               />
             </div>
             <div className="flex flex-col w-full">
-                <div className="flex flex-col gap-2">
-                  <h2 className="font-semibold">{service.name}</h2>
-                  <p className="text-xs text-gray-400 text">
-                    {service.description}
-                  </p>
-                </div>
-                <div className="flex items-center justify-between mt-3  ">
-                  <p className="text-primary font-bold text-sm">
-                    {Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(Number(service.price))}
-                  </p>
-                  <Button className="bg-secondary">Reservar</Button>
-                </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="font-semibold">{service.name}</h2>
+                <p className="text-xs text-gray-400 text">
+                  {service.description}
+                </p>
+              </div>
+              <div className="flex items-center justify-between mt-3  ">
+                <p className="text-primary font-bold text-sm">
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(Number(service.price))}
+                </p>
+                <Button className="bg-secondary" onClick={handleBookingClick}>
+                  Reservar
+                </Button>
+              </div>
             </div>
           </div>
         </CardContent>
