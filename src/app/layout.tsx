@@ -24,10 +24,10 @@ export default function RootLayout({
           <main>
             {children}
             <Toaster />
-            <footer>
-              <Footer />
-            </footer>
           </main>
+          <footer>
+            <Footer />
+          </footer>
         </AuthProvider>
       </body>
     </html>
