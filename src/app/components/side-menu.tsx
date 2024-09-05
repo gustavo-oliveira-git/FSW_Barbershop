@@ -62,7 +62,9 @@ const SideMenu = () => {
               </Button>
               {data?.user && (
                 <Button variant={"outline"} className="justify-start">
-                  <CalendarDays size={18} className="mr-2" /> Agendamentos
+                  <Link className="flex" href={"/bookings"}>
+                    <CalendarDays size={18} className="mr-2" />Agendamentos
+                  </Link>
                 </Button>
               )}
             </div>
